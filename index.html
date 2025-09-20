@@ -38,9 +38,9 @@
     .menu a:hover{ color:var(--text); background:#172036 }
 
     .hero{ position:relative; overflow:hidden }
-    .hero-inner{ display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:center; padding:64px 0 40px }
-    @media (max-width:900px){ .hero-inner{ grid-template-columns:1fr; padding:48px 0 } }
+    .hero-inner{ display:grid; grid-template-columns:1fr; gap:20px; align-items:center; padding:64px 0 40px; text-align:left }
     .title{ font-size: clamp(28px, 6vw, 58px); line-height:1.05; margin:0 0 14px; font-weight:800 }
+    .title .grad{ background:linear-gradient(90deg,var(--accent),var(--primary)); -webkit-background-clip:text; background-clip:text; color:transparent; }
     .subtitle{ color:var(--muted); font-size: clamp(14px, 2.5vw, 18px) }
     .cta{ margin-top:22px; display:flex; gap:12px; flex-wrap:wrap }
     .btn{ padding:12px 18px; border-radius:14px; border:1px solid #1f2a44; background:#10182a; transition:.2s; font-weight:600 }
@@ -101,35 +101,11 @@
     <div class="blob"></div><div class="blob2"></div>
     <div class="container hero-inner">
       <div>
-        <h1 class="title">Indie games & apps, <span style="background:linear-gradient(90deg,var(--accent),var(--primary)); -webkit-background-clip:text; background-clip:text; color:transparent;">gaming-grade</span> minőségben</h1>
+        <h1 class="title">Indie games & apps, <span class="grad">gaming-grade</span> minőségben</h1>
         <p class="subtitle">Mobil, PC és konzol fókusz. Kreatív látvány + stabil tech. Itt követheted a játékaimat, appjaimat és a friss híreket.</p>
         <div class="cta">
           <a class="btn primary" href="#projects">Nézd meg a projekteket</a>
           <a class="btn" href="https://github.com/combepet" target="_blank" rel="noopener">GitHub profil</a>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="card">
-          <div class="thumb">
-            <!-- Hero preview kép a fő projektről -->
-            <img src="assets/hero-showcase.jpg" alt="Project showcase (placeholder)">
-          </div>
-          <div class="card-body">
-            <div class="card-title">Featured • <span class="badge ready">Live</span></div>
-            <div class="desc">Tasty Tactics – mobilos merge-restaurant játék frissítésekkel, 35+ nyelv, heti release-ek.</div>
-            <div class="platforms">
-              <span class="pill" title="Android">
-                <!-- Android ikon -->
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 8.5h-11a.6.6 0 0 0-.6.6v6.8a2.1 2.1 0 0 0 2.1 2.1v2.4a.6.6 0 1 0 1.2 0V18h4.6v2.4a.6.6 0 1 0 1.2 0V18a2.1 2.1 0 0 0 2.1-2.1V9.1a.6.6 0 0 0-.6-.6Zm-8.7-3a.6.6 0 1 0-1.1-.5l-.6 1a6.8 6.8 0 0 1 3.6-1.5v-1a.6.6 0 1 1 1.3 0v1a6.7 6.7 0 0 1 3.5 1.5l-.6-1a.6.6 0 1 1 1.1.5l.9 1.5a6.8 6.8 0 0 1 1.3 4h-11a6.8 6.8 0 0 1 1.2-4Z"/></svg>
-                Android
-              </span>
-              <span class="pill" title="iOS">
-                <!-- iOS alma -->
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 13.3c0-2.3 1.9-3.3 2-3.4-1.1-1.6-2.7-1.8-3.2-1.9-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-3- .8C8 8 6.4 9 5.6 10.6c-1.6 2.8-.4 6.9 1.1 9.2.8 1.2 1.8 2.6 3.1 2.6 1.2 0 1.7-.8 3.2-.8 1.6 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4a10 10 0 0 0 1.1-2.3c-2.9-1.1-3-4.4-3-4.4ZM15.8 5.8c.6-.7 1-1.7.9-2.7- .9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2Z"/></svg>
-                iOS (hamarosan)
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -142,26 +118,23 @@
 
       <h3 style="margin:18px 0 10px;">🎮 Games</h3>
       <div class="grid">
-        <!-- Tasty Tactics – KÉSZEN ÁLL (Android linket cseréld a sajátodra) -->
+        <!-- Tasty Tactics -->
         <a class="card reveal" href="https://play.google.com/store/apps/details?id=com.tastytactics" target="_blank" rel="noopener">
-          <div class="thumb"><img src="assets/tt-cover.jpg" alt="Tasty Tactics cover"></div>
+          <div class="thumb"><img src="assets/tasty-tactics/cover.jpg" alt="Tasty Tactics cover"></div>
           <div class="card-body">
             <div class="card-title">Tasty Tactics <span class="badge ready">Ready</span></div>
             <div class="desc">Merge-restaurant idle élmény. Heti frissítések, 35+ nyelv, küldetések, spawners, stb.</div>
             <div class="platforms">
-              <span class="pill">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 8.5h-11a.6.6 0 0 0-.6.6v6.8a2.1 2.1 0 0 0 2.1 2.1v2.4a.6.6 0 1 0 1.2 0V18h4.6v2.4a.6.6 0 1 0 1.2 0V18a2.1 2.1 0 0 0 2.1-2.1V9.1a.6.6 0 0 0-.6-.6Z"/></svg>
-                Android
-              </span>
+              <span class="pill">Android</span>
               <span class="pill" title="iOS (később)">iOS</span>
               <span class="pill" title="PC (terv)">PC</span>
             </div>
           </div>
         </a>
 
-        <!-- Pet Game – haladott mobil, képpel -->
+        <!-- Pet Game -->
         <div class="card reveal">
-          <div class="thumb"><img src="assets/petgame-cover.jpg" alt="Pet Game cover"></div>
+          <div class="thumb"><img src="assets/pet-game/cover.jpg" alt="Pet Game cover"></div>
           <div class="card-body">
             <div class="card-title">Pet Game <span class="badge soon">In progress</span></div>
             <div class="desc">Cuki, idle-clicker elemekkel. Unikornisok, minijátékok, sprite animációk.</div>
@@ -172,15 +145,16 @@
           </div>
         </div>
 
-        <!-- Mobile Game #2 – coming soon + kép feltöltve -->
+        <!-- Time (working title) -->
         <div class="card reveal">
-          <div class="thumb"><img src="assets/mobile2-cover.jpg" alt="Mobile Game 2"></div>
+          <div class="thumb"><img src="assets/time/cover.jpg" alt="Time cover"></div>
           <div class="card-body">
-            <div class="card-title">Mobile Game #2 <span class="badge soon">Coming soon</span></div>
-            <div class="desc">Második mobil cím – teaser él, képek feltöltve, mechanikák prototipizálva.</div>
+            <div class="card-title">Time <span class="badge soon">Coming soon</span></div>
+            <div class="desc">2063-as világ – stratégiai/mese-hibrid, karakterközpontú látvány, szubjektív időérzékelés.</div>
             <div class="platforms">
               <span class="pill">Android</span>
               <span class="pill">iOS</span>
+              <span class="pill">PC</span>
             </div>
           </div>
         </div>
@@ -188,7 +162,6 @@
 
       <h3 style="margin:28px 0 10px;">🧰 Apps</h3>
       <div class="grid">
-        <!-- Utility App – üres placeholder, később bővíthető -->
         <div class="card reveal">
           <div class="thumb"><img src="assets/utility-app.jpg" alt="Utility app placeholder"></div>
           <div class="card-body">
