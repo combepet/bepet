@@ -1,37 +1,262 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bepet – Home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bepet – Games & Apps</title>
+  <meta name="description" content="Indie games & apps by Bepet. Tasty Tactics, Pet Game and more." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      color: #333;
-      text-align: center;
-      padding: 50px;
+    :root {
+      --bg: #0b0f1a;
+      --bg2:#0e1322;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --primary:#7c3aed; /* neon-lila */
+      --accent:#22d3ee;  /* cián */
+      --card:#0f172a80;  /* üveg */
+      --border:#334155;
+      --success:#22c55e;
+      --warn:#f59e0b;
     }
-    h1 {
-      color: #2c3e50;
+    * { box-sizing: border-box }
+    html,body { margin:0; padding:0; background: radial-gradient(1200px 800px at 10% -10%, #111827, transparent),
+                                     radial-gradient(1000px 600px at 120% 20%, #0b1220, transparent),
+                                     var(--bg);
+                color: var(--text); font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif }
+    a{ color:inherit; text-decoration: none }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px }
+    header{ position:sticky; top:0; z-index:50; backdrop-filter: blur(8px);
+            background: linear-gradient(180deg, #0b0f1ae6, #0b0f1a80 60%, transparent);
+            border-bottom:1px solid #0b1220 }
+    .nav{ display:flex; align-items:center; justify-content:space-between; height:64px }
+    .brand{ font-weight:800; letter-spacing:.5px; display:flex; align-items:center; gap:10px }
+    .dot{ width:10px; height:10px; border-radius:50%; background:linear-gradient(45deg,var(--primary),var(--accent)); box-shadow:0 0 12px var(--accent) }
+    .menu a{ padding:6px 12px; border-radius:10px; color:var(--muted) }
+    .menu a:hover{ color:var(--text); background:#172036 }
+
+    .hero{ position:relative; overflow:hidden }
+    .hero-inner{ display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:center; padding:64px 0 40px }
+    @media (max-width:900px){ .hero-inner{ grid-template-columns:1fr; padding:48px 0 } }
+    .title{ font-size: clamp(28px, 6vw, 58px); line-height:1.05; margin:0 0 14px; font-weight:800 }
+    .subtitle{ color:var(--muted); font-size: clamp(14px, 2.5vw, 18px) }
+    .cta{ margin-top:22px; display:flex; gap:12px; flex-wrap:wrap }
+    .btn{ padding:12px 18px; border-radius:14px; border:1px solid #1f2a44; background:#10182a; transition:.2s; font-weight:600 }
+    .btn.primary{ background:linear-gradient(90deg,var(--primary),var(--accent)); color:#0a0f1a; border:none; box-shadow:0 0 20px #22d3ee40 }
+    .btn:hover{ transform:translateY(-1px); box-shadow:0 6px 20px #00000040 }
+
+    .blob{ position:absolute; inset:auto auto -120px -120px; width:420px; height:420px; border-radius:50%;
+           filter: blur(60px); opacity:.5; background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%) }
+    .blob2{ position:absolute; inset:-140px -140px auto auto; width:520px; height:520px; border-radius:50%;
+            filter: blur(70px); opacity:.35; background: radial-gradient(circle at 60% 40%, var(--primary), transparent 60%) }
+
+    .section{ padding:42px 0 }
+    .section h2{ font-size:28px; margin:0 0 18px; font-weight:800 }
+    .muted{ color:var(--muted) }
+
+    .grid{ display:grid; gap:18px; grid-template-columns:repeat(3,1fr) }
+    @media (max-width:1000px){ .grid{ grid-template-columns:repeat(2,1fr) } }
+    @media (max-width:640px){ .grid{ grid-template-columns:1fr } }
+
+    .card{
+      position:relative; background: linear-gradient(180deg, #111a2caa, #0b1220a0);
+      border:1px solid #1f2a44; border-radius:18px; overflow:hidden;
+      transition:.25s; box-shadow: 0 10px 30px #00000040;
     }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #3498db;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-    }
-    a:hover {
-      background: #2980b9;
-    }
+    .card:hover{ transform: translateY(-4px); box-shadow: 0 18px 40px #00000070; border-color:#2b3d64 }
+    .thumb{ aspect-ratio: 16/9; background:#0f1626; display:flex; align-items:center; justify-content:center; overflow:hidden }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.02) }
+    .card-body{ padding:14px 14px 16px }
+    .card-title{ display:flex; align-items:center; gap:8px; font-weight:700; margin:0 0 6px; font-size:18px }
+    .badge{ font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #2b3d64; color:#cbd5e1; background:#0d1526 }
+    .badge.ready{ border-color:#164e3b; color:#d1fae5; background:#052e25 }
+    .badge.soon{ border-color:#5b3a12; color:#ffedd5; background:#23160a }
+    .desc{ color:var(--muted); font-size:14px; line-height:1.5; min-height:3.1em }
+
+    .platforms{ display:flex; align-items:center; gap:10px; margin-top:10px; flex-wrap:wrap }
+    .pill{ display:flex; align-items:center; gap:6px; font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid #22314f; background:#0d1526 }
+    .pill svg{ width:14px; height:14px }
+
+    .reveal{ opacity:0; transform:translateY(12px); transition: .6s cubic-bezier(.2,.8,.2,1) }
+    .reveal.show{ opacity:1; transform:none }
+
+    footer{ border-top:1px solid #121a2c; margin-top:34px; padding:20px 0; color:#93a3bd; font-size:13px }
   </style>
 </head>
 <body>
-  <h1>Üdv a Bepet oldalon!</h1>
-  <p>Ez egy teszt kezdőoldal a GitHub Pages-hez.</p>
-  <a href="https://play.google.com/store/apps/details?id=com.tastytactics">Tasty Tactics letöltése</a>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot"></span> BEPET</div>
+      <nav class="menu">
+        <a href="#projects">Projektek</a>
+        <a href="#about">Rólam</a>
+        <a href="#contact">Kapcsolat</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="hero">
+    <div class="blob"></div><div class="blob2"></div>
+    <div class="container hero-inner">
+      <div>
+        <h1 class="title">Indie games & apps, <span style="background:linear-gradient(90deg,var(--accent),var(--primary)); -webkit-background-clip:text; background-clip:text; color:transparent;">gaming-grade</span> minőségben</h1>
+        <p class="subtitle">Mobil, PC és konzol fókusz. Kreatív látvány + stabil tech. Itt követheted a játékaimat, appjaimat és a friss híreket.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">Nézd meg a projekteket</a>
+          <a class="btn" href="https://github.com/combepet" target="_blank" rel="noopener">GitHub profil</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card">
+          <div class="thumb">
+            <!-- Hero preview kép a fő projektről -->
+            <img src="assets/hero-showcase.jpg" alt="Project showcase (placeholder)">
+          </div>
+          <div class="card-body">
+            <div class="card-title">Featured • <span class="badge ready">Live</span></div>
+            <div class="desc">Tasty Tactics – mobilos merge-restaurant játék frissítésekkel, 35+ nyelv, heti release-ek.</div>
+            <div class="platforms">
+              <span class="pill" title="Android">
+                <!-- Android ikon -->
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 8.5h-11a.6.6 0 0 0-.6.6v6.8a2.1 2.1 0 0 0 2.1 2.1v2.4a.6.6 0 1 0 1.2 0V18h4.6v2.4a.6.6 0 1 0 1.2 0V18a2.1 2.1 0 0 0 2.1-2.1V9.1a.6.6 0 0 0-.6-.6Zm-8.7-3a.6.6 0 1 0-1.1-.5l-.6 1a6.8 6.8 0 0 1 3.6-1.5v-1a.6.6 0 1 1 1.3 0v1a6.7 6.7 0 0 1 3.5 1.5l-.6-1a.6.6 0 1 1 1.1.5l.9 1.5a6.8 6.8 0 0 1 1.3 4h-11a6.8 6.8 0 0 1 1.2-4Z"/></svg>
+                Android
+              </span>
+              <span class="pill" title="iOS">
+                <!-- iOS alma -->
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 13.3c0-2.3 1.9-3.3 2-3.4-1.1-1.6-2.7-1.8-3.2-1.9-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-3- .8C8 8 6.4 9 5.6 10.6c-1.6 2.8-.4 6.9 1.1 9.2.8 1.2 1.8 2.6 3.1 2.6 1.2 0 1.7-.8 3.2-.8 1.6 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4a10 10 0 0 0 1.1-2.3c-2.9-1.1-3-4.4-3-4.4ZM15.8 5.8c.6-.7 1-1.7.9-2.7- .9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2Z"/></svg>
+                iOS (hamarosan)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="projects" class="section">
+    <div class="container">
+      <h2>Projektek</h2>
+      <p class="muted">Játékok és appok fejlesztés alatt. A kártyákon státusz, platform és képek.</p>
+
+      <h3 style="margin:18px 0 10px;">🎮 Games</h3>
+      <div class="grid">
+        <!-- Tasty Tactics – KÉSZEN ÁLL (Android linket cseréld a sajátodra) -->
+        <a class="card reveal" href="https://play.google.com/store/apps/details?id=com.tastytactics" target="_blank" rel="noopener">
+          <div class="thumb"><img src="assets/tt-cover.jpg" alt="Tasty Tactics cover"></div>
+          <div class="card-body">
+            <div class="card-title">Tasty Tactics <span class="badge ready">Ready</span></div>
+            <div class="desc">Merge-restaurant idle élmény. Heti frissítések, 35+ nyelv, küldetések, spawners, stb.</div>
+            <div class="platforms">
+              <span class="pill">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 8.5h-11a.6.6 0 0 0-.6.6v6.8a2.1 2.1 0 0 0 2.1 2.1v2.4a.6.6 0 1 0 1.2 0V18h4.6v2.4a.6.6 0 1 0 1.2 0V18a2.1 2.1 0 0 0 2.1-2.1V9.1a.6.6 0 0 0-.6-.6Z"/></svg>
+                Android
+              </span>
+              <span class="pill" title="iOS (később)">iOS</span>
+              <span class="pill" title="PC (terv)">PC</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Pet Game – haladott mobil, képpel -->
+        <div class="card reveal">
+          <div class="thumb"><img src="assets/petgame-cover.jpg" alt="Pet Game cover"></div>
+          <div class="card-body">
+            <div class="card-title">Pet Game <span class="badge soon">In progress</span></div>
+            <div class="desc">Cuki, idle-clicker elemekkel. Unikornisok, minijátékok, sprite animációk.</div>
+            <div class="platforms">
+              <span class="pill">Android</span>
+              <span class="pill">iOS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Game #2 – coming soon + kép feltöltve -->
+        <div class="card reveal">
+          <div class="thumb"><img src="assets/mobile2-cover.jpg" alt="Mobile Game 2"></div>
+          <div class="card-body">
+            <div class="card-title">Mobile Game #2 <span class="badge soon">Coming soon</span></div>
+            <div class="desc">Második mobil cím – teaser él, képek feltöltve, mechanikák prototipizálva.</div>
+            <div class="platforms">
+              <span class="pill">Android</span>
+              <span class="pill">iOS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin:28px 0 10px;">🧰 Apps</h3>
+      <div class="grid">
+        <!-- Utility App – üres placeholder, később bővíthető -->
+        <div class="card reveal">
+          <div class="thumb"><img src="assets/utility-app.jpg" alt="Utility app placeholder"></div>
+          <div class="card-body">
+            <div class="card-title">Utility App <span class="badge soon">Concept</span></div>
+            <div class="desc">Hasznos, letisztult produktivitás app ötlet – UX vázlat készül.</div>
+            <div class="platforms">
+              <span class="pill">Android</span><span class="pill">iOS</span><span class="pill">Desktop</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="thumb"><img src="assets/toolkit.jpg" alt="Toolkit placeholder"></div>
+          <div class="card-body">
+            <div class="card-title">Dev Toolkit <span class="badge soon">Prototype</span></div>
+            <div class="desc">Kis fejlesztői eszköztár – mérőszámok, build helper, release notes.</div>
+            <div class="platforms">
+              <span class="pill">Web</span><span class="pill">Desktop</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="thumb"><img src="assets/creative-app.jpg" alt="Creative app"></div>
+          <div class="card-body">
+            <div class="card-title">Creative App <span class="badge soon">Exploration</span></div>
+            <div class="desc">Kép/animáció generálás játékos UI-jal – kísérleti stádium.</div>
+            <div class="platforms">
+              <span class="pill">Web</span><span class="pill">Mobile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container reveal">
+      <h2>Rólam</h2>
+      <p class="muted">Indie fejlesztő vagyok, aki hisz a játékos vizualitás + stabil technika kombinációjában. Flutter/Dart, saját UI-rendszerek, gyors iteráció, sok nyelv, heti frissítések. Cél: mobil → PC/konzol bővítés.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container reveal">
+      <h2>Kapcsolat</h2>
+      <p class="muted">Elérsz itt: <a href="mailto:hello@yourmail.tld">hello@yourmail.tld</a> • YouTube • TikTok • GitHub</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="y"></span> Bepet — All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // év
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // scroll reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      })
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
 </body>
 </html>
