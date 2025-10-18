@@ -4,44 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bepet – Games & Apps</title>
-  <meta name="description" content="Indie games & apps by Bepet. Tasty Tactics, SlidePals, Timnetic and more." />
+  <meta name="description" content="Indie games & apps by Bepet. Tasty Tactics, Pet Game, SlidePals, and Timnetic." />
   <link rel="canonical" href="https://your-domain.tld/" />
-
-  <!-- SEO / Social -->
-  <meta property="og:title" content="Bepet – Games & Apps">
-  <meta property="og:description" content="Indie games & apps by Bepet. Tasty Tactics, SlidePals, Timnetic and more.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://your-domain.tld/">
-  <meta property="og:image" content="https://your-domain.tld/assets/tasty-tactics/cover.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bepet – Games & Apps">
-  <meta name="twitter:description" content="Indie games & apps by Bepet. Tasty Tactics, SlidePals, Timnetic and more.">
-  <meta name="twitter:image" content="https://your-domain.tld/assets/tasty-tactics/cover.jpg">
-  <link rel="icon" href="/favicon.ico">
-
+  <link rel="icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --bg:#0b0f1a; --text:#e5e7eb; --muted:#94a3b8;
       --primary:#7c3aed; --accent:#22d3ee;
       --card:#0f172a; --border:#22314f;
       --success:#16a34a; --warn:#f59e0b; --disabled:#1a243a;
-      --focus:#93c5fd;
     }
     *{box-sizing:border-box}
     html,body{
-      margin:0;padding:0;background:
-        radial-gradient(1200px 800px at 10% -10%, #111827, transparent),
-        radial-gradient(1000px 600px at 120% 20%, #0b1220, transparent),
-        var(--bg);
+      margin:0;padding:0;
+      background:radial-gradient(1200px 800px at 10% -10%, #111827, transparent),
+                 radial-gradient(1000px 600px at 120% 20%, #0b1220, transparent),
+                 var(--bg);
       color:var(--text); font-family:Poppins,system-ui,Segoe UI,Roboto,sans-serif
     }
     a{color:inherit;text-decoration:none}
-    a:focus-visible, button:focus-visible, select:focus-visible{outline:3px solid var(--focus); outline-offset:2px; border-radius:10px}
-
     .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
     header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);
@@ -51,14 +34,14 @@
     .brand{font-weight:800;letter-spacing:.5px;display:flex;align-items:center;gap:10px}
     .dot{width:10px;height:10px;border-radius:50%;
       background:linear-gradient(45deg,var(--primary),var(--accent));box-shadow:0 0 12px var(--accent)}
-    .menu{display:flex;align-items:center;gap:10px}
+    .menu{display:flex;align-items:center;gap:14px}
     .menu a{padding:6px 12px;border-radius:10px;color:var(--muted)}
     .menu a:hover{color:var(--text);background:#172036}
-    .lang{appearance:none;background:#10182a;border:1px solid var(--border);color:var(--text);
-      padding:6px 10px;border-radius:10px}
+    .icons a img{height:28px;width:auto;filter:brightness(0) invert(1);opacity:.8;transition:.2s}
+    .icons a img:hover{opacity:1;transform:scale(1.05)}
 
     .hero{position:relative;overflow:hidden}
-    .hero-inner{display:grid;grid-template-columns:1fr;gap:20px;align-items:center;padding:64px 0 40px}
+    .hero-inner{padding:64px 0 40px;text-align:left}
     .title{font-size:clamp(28px,6vw,58px);line-height:1.05;margin:0 0 14px;font-weight:800}
     .title .grad{background:linear-gradient(90deg,var(--accent),var(--primary));-webkit-background-clip:text;background-clip:text;color:transparent}
     .subtitle{color:var(--muted);font-size:clamp(14px,2.5vw,18px)}
@@ -67,25 +50,17 @@
     .btn.primary{background:linear-gradient(90deg,var(--primary),var(--accent));color:#0a0f1a;border:none;box-shadow:0 0 20px #22d3ee40}
     .btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px #00000040}
 
-    .blob{position:absolute;inset:auto auto -120px -120px;width:420px;height:420px;border-radius:50%;filter:blur(60px);opacity:.5;
-      background:radial-gradient(circle at 30% 30%,var(--accent),transparent 60%)}
-    .blob2{position:absolute;inset:-140px -140px auto auto;width:520px;height:520px;border-radius:50%;filter:blur(70px);opacity:.35;
-      background:radial-gradient(circle at 60% 40%,var(--primary),transparent 60%)}
-
     .section{padding:42px 0}
     .section h2{font-size:28px;margin:0 0 18px;font-weight:800}
     .muted{color:var(--muted)}
-
-    .filters{display:flex;gap:8px;margin:8px 0 18px;flex-wrap:wrap}
-    .chip{font-size:13px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:#0d1526;color:#cbd5e1;cursor:pointer}
-    .chip.active{background:#142038;border-color:#2b3d64}
 
     .grid{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
     @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.grid{grid-template-columns:1fr}}
 
     .card{position:relative;background:linear-gradient(180deg,#111a2caa,#0b1220a0);
-      border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.25s;box-shadow:0 10px 30px #00000040}
+      border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.25s;
+      box-shadow:0 10px 30px #00000040}
     .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px #00000070;border-color:#2b3d64}
     .thumb{aspect-ratio:16/9;background:#0f1626;display:flex;align-items:center;justify-content:center;overflow:hidden}
     .thumb img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02)}
@@ -100,65 +75,39 @@
     .pill{display:flex;align-items:center;gap:6px;font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid #22314f;background:#0d1526}
     .disabled{opacity:.65;pointer-events:none;filter:saturate(.7)}
 
-    .reveal{opacity:0;transform:translateY(12px);transition:.6s cubic-bezier(.2,.8,.2,1)}
-    .reveal.show{opacity:1;transform:none}
-
-    footer{border-top:1px solid #121a2c;margin-top:34px;padding:20px 0;color:#93a3bd;font-size:13px}
-
-    @media (prefers-reduced-motion: reduce){
-      .reveal{transition:none}
-      .btn:hover{transform:none;box-shadow:none}
-    }
+    footer{border-top:1px solid #121a2c;margin-top:34px;padding:20px 0;color:#93a3bd;font-size:13px;text-align:center}
   </style>
-  <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"Bepet",
-    "url":"https://your-domain.tld/",
-    "sameAs":["https://github.com/combepet"],
-    "logo":"https://your-domain.tld/favicon.ico"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"SoftwareApplication",
-    "name":"Tasty Tactics",
-    "operatingSystem":"Android",
-    "applicationCategory":"Game",
-    "image":"https://your-domain.tld/assets/tasty-tactics/cover.jpg",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-    "url":"https://play.google.com/store/apps/details?id=com.tastytactics"
-  }
-  </script>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <div class="brand" aria-label="Bepet brand"><span class="dot" aria-hidden="true"></span> BEPET</div>
-      <nav class="menu" aria-label="Main">
-        <a href="#projects" data-i18n="nav.projects">Projects</a>
-        <a href="#about" data-i18n="nav.about">About</a>
-        <a href="#contact" data-i18n="nav.contact">Contact</a>
-        <select id="lang" class="lang" aria-label="Language">
-          <option value="en">EN</option>
-          <option value="hu">HU</option>
-        </select>
+      <div class="brand"><span class="dot"></span> BEPET</div>
+      <nav class="menu">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
+      <div class="icons">
+        <a href="https://play.google.com/store/apps/details?id=com.tastytactics" target="_blank" rel="noopener" title="Google Play">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+        </a>
+        <a href="#" target="_blank" rel="noopener" title="App Store (coming)">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+        </a>
+        <a href="https://github.com/combepet" target="_blank" rel="noopener" title="GitHub">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
+        </a>
+      </div>
     </div>
   </header>
 
   <main class="hero">
-    <div class="blob" aria-hidden="true"></div><div class="blob2" aria-hidden="true"></div>
     <div class="container hero-inner">
       <div>
-        <h1 class="title" data-i18n="hero.title">Indie games & apps, <span class="grad">gaming-grade</span> quality</h1>
-        <p class="subtitle" data-i18n="hero.subtitle">Mobile first. Strong visuals + stable tech. Follow my games and updates here.</p>
+        <h1 class="title">Indie games & apps, <span class="grad">gaming-grade</span> quality</h1>
+        <p class="subtitle">Mobile focus. Strong visuals + stable tech. Follow my released and in-dev projects here.</p>
         <div class="cta">
-          <a class="btn primary" href="#projects" data-i18n="hero.cta">See projects</a>
-          <a class="btn" href="https://github.com/combepet" target="_blank" rel="noopener" aria-label="GitHub profile">GitHub</a>
+          <a class="btn primary" href="#projects">See projects</a>
         </div>
       </div>
     </div>
@@ -166,61 +115,47 @@
 
   <section id="projects" class="section">
     <div class="container">
-      <h2 data-i18n="projects.title">Projects</h2>
-      <p class="muted" data-i18n="projects.subtitle">Short, honest summaries. Status, platforms, cover images.</p>
-
-      <div class="filters" role="tablist" aria-label="Filters">
-        <button class="chip active" data-filter="all" role="tab" aria-selected="true" data-i18n="filters.all">All</button>
-        <button class="chip" data-filter="playable" role="tab" aria-selected="false" data-i18n="filters.playable">Playable</button>
-        <button class="chip" data-filter="dev" role="tab" aria-selected="false" data-i18n="filters.dev">In development</button>
-      </div>
-
-      <h3 style="margin:18px 0 10px;" data-i18n="projects.games">🎮 Games</h3>
-      <div class="grid" id="projectsGrid">
-        <!-- Tasty Tactics (Playable) -->
-        <a class="card reveal" data-status="playable" href="https://play.google.com/store/apps/details?id=com.tastytactics" target="_blank" rel="noopener" aria-label="Open Tasty Tactics on Google Play">
-          <div class="ribbon play" data-i18n="status.playable">Playable</div>
-          <div class="thumb"><img loading="lazy" src="assets/tasty-tactics/cover.jpg" alt="Tasty Tactics cover image"></div>
+      <h2>Released Game</h2>
+      <div class="grid">
+        <a class="card" href="https://play.google.com/store/apps/details?id=com.tastytactics" target="_blank" rel="noopener">
+          <div class="ribbon play">Ready</div>
+          <div class="thumb"><img src="assets/tasty-tactics/cover.jpg" alt="Tasty Tactics cover"></div>
           <div class="card-body">
             <div class="card-title">Tasty Tactics</div>
-            <div class="desc" data-i18n="tt.desc">Merge-restaurant idle. Weekly updates, 30+ languages, missions, spawners, rewards.</div>
-            <div class="platforms">
-              <span class="pill">Android</span>
-              <span class="pill" title="iOS (later)">iOS</span>
-              <span class="pill" title="PC (planned)">PC</span>
-            </div>
+            <div class="desc">Merge-restaurant idle. Weekly updates, 30+ languages, missions, spawners, and rewards.</div>
+            <div class="platforms"><span class="pill">Android</span><span class="pill">iOS</span><span class="pill">PC</span></div>
           </div>
         </a>
+      </div>
 
-        <!-- Pet Game (In development) -->
-        <div class="card reveal disabled" data-status="dev" aria-disabled="true">
-          <div class="ribbon dev" data-i18n="status.dev">In development</div>
-          <div class="thumb"><img loading="lazy" src="assets/pet-game/cover.jpg" alt="Pet Game cover image"></div>
+      <h2 style="margin-top:40px;">In Development</h2>
+      <div class="grid">
+        <div class="card disabled">
+          <div class="ribbon dev">In dev</div>
+          <div class="thumb"><img src="assets/pet-game/cover.jpg" alt="Pet Game cover"></div>
           <div class="card-body">
             <div class="card-title">Pet Game</div>
-            <div class="desc" data-i18n="pet.desc">Cute idle-clicker vibes. Pets, minigames, sprite animations.</div>
+            <div class="desc">Cute idle-clicker world with pets, mini games, and animated sprites.</div>
             <div class="platforms"><span class="pill">Android</span><span class="pill">iOS</span></div>
           </div>
         </div>
 
-        <!-- SlidePals (In development) -->
-        <div class="card reveal disabled" data-status="dev" aria-disabled="true">
-          <div class="ribbon dev" data-i18n="status.dev">In development</div>
-          <div class="thumb"><img loading="lazy" src="assets/slide/cover.jpg" alt="SlidePals cover image"></div>
+        <div class="card disabled">
+          <div class="ribbon dev">In dev</div>
+          <div class="thumb"><img src="assets/slide/cover.jpg" alt="SlidePals cover"></div>
           <div class="card-body">
             <div class="card-title">SlidePals</div>
-            <div class="desc" data-i18n="slide.desc">Runner + gate math with pets. Unicorns, boosts, clean visuals.</div>
+            <div class="desc">Casual math-runner with animals, gates, and colorful upgrades.</div>
             <div class="platforms"><span class="pill">Android</span><span class="pill">iOS</span></div>
           </div>
         </div>
 
-        <!-- Timnetic (In development) -->
-        <div class="card reveal disabled" data-status="dev" aria-disabled="true">
-          <div class="ribbon dev" data-i18n="status.dev">In development</div>
-          <div class="thumb"><img loading="lazy" src="assets/time/cover.jpg" alt="Timnetic cover image"></div>
+        <div class="card disabled">
+          <div class="ribbon dev">In dev</div>
+          <div class="thumb"><img src="assets/time/cover.jpg" alt="Timnetic cover"></div>
           <div class="card-body">
             <div class="card-title">Timnetic</div>
-            <div class="desc" data-i18n="time.desc">A future-earth where time, sound and magnetism resonate. Worldbuilding in progress.</div>
+            <div class="desc">A story-driven strategy set in 2063 — where time, sound and magnetism intertwine.</div>
             <div class="platforms"><span class="pill">Android</span><span class="pill">iOS</span><span class="pill">PC</span></div>
           </div>
         </div>
@@ -229,104 +164,29 @@
   </section>
 
   <section id="about" class="section">
-    <div class="container reveal">
-      <h2 data-i18n="about.title">About</h2>
-      <p class="muted" data-i18n="about.body">
-        Indie dev. Flutter/Dart. Custom UI, rapid iteration, clear visuals. I ship often and keep things stable.
+    <div class="container">
+      <h2>About</h2>
+      <p class="muted">
+        Indie dev creating cross-platform games with Flutter/Dart.  
+        Focus on design, performance, and frequent updates.  
+        Vision: small polished games that grow into worlds.
       </p>
     </div>
   </section>
 
   <section id="contact" class="section">
-    <div class="container reveal">
-      <h2 data-i18n="contact.title">Contact</h2>
-      <p class="muted" data-i18n="contact.body">
-        Reach me: <a href="mailto:hello@yourmail.tld">hello@yourmail.tld</a> • YouTube • TikTok • GitHub
-      </p>
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="muted">hello@yourmail.tld • YouTube • TikTok • GitHub</p>
     </div>
   </section>
 
   <footer>
-    <div class="container">© <span id="y"></span> Bepet — All rights reserved.</div>
+    © <span id="y"></span> Bepet — All rights reserved.
   </footer>
 
   <script>
-    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Scroll reveal
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }});
-    }, {threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-    // Simple i18n (EN/HU)
-    const dict={
-      en:{
-        "nav.projects":"Projects","nav.about":"About","nav.contact":"Contact",
-        "hero.title":"Indie games & apps, <span class=\"grad\">gaming-grade</span> quality",
-        "hero.subtitle":"Mobile first. Strong visuals + stable tech. Follow my games and updates here.",
-        "hero.cta":"See projects",
-        "projects.title":"Projects",
-        "projects.subtitle":"Short, honest summaries. Status, platforms, cover images.",
-        "projects.games":"🎮 Games",
-        "status.playable":"Playable","status.dev":"In development",
-        "filters.all":"All","filters.playable":"Playable","filters.dev":"In development",
-        "tt.desc":"Merge-restaurant idle. Weekly updates, 30+ languages, missions, spawners, rewards.",
-        "pet.desc":"Cute idle-clicker vibes. Pets, minigames, sprite animations.",
-        "slide.desc":"Runner + gate math with pets. Unicorns, boosts, clean visuals.",
-        "time.desc":"A future-earth where time, sound and magnetism resonate. Worldbuilding in progress.",
-        "about.title":"About",
-        "about.body":"Indie dev. Flutter/Dart. Custom UI, rapid iteration, clear visuals. I ship often and keep things stable.",
-        "contact.title":"Contact",
-        "contact.body":"Reach me: <a href=\"mailto:hello@yourmail.tld\">hello@yourmail.tld</a> • YouTube • TikTok • GitHub"
-      },
-      hu:{
-        "nav.projects":"Projektek","nav.about":"Rólam","nav.contact":"Kapcsolat",
-        "hero.title":"Indie játékok & appok, <span class=\"grad\">játékszintű</span> minőségben",
-        "hero.subtitle":"Mobiltól indulva. Erős látvány + stabil technika. Itt követheted a játékaimat és frissítéseket.",
-        "hero.cta":"Projektek megnyitása",
-        "projects.title":"Projektek",
-        "projects.subtitle":"Rövid, pontos leírások. Státusz, platformok, borítóképek.",
-        "projects.games":"🎮 Játékok",
-        "status.playable":"Letölthető","status.dev":"Fejlesztés alatt",
-        "filters.all":"Összes","filters.playable":"Letölthető","filters.dev":"Fejlesztés alatt",
-        "tt.desc":"Merge-étterem idle. Heti frissítések, 30+ nyelv, küldetések, spawner-rendszer, jutalmak.",
-        "pet.desc":"Cuki idle-clicker hangulat. Kedvencek, minijátékok, sprite animációk.",
-        "slide.desc":"Runner + kapus matek kisállatokkal. Unikornisok, boostok, letisztult látvány.",
-        "time.desc":"Jövő-Föld, ahol idő, hang és mágnesesség rezonál. Világépítés folyamatban.",
-        "about.title":"Rólam",
-        "about.body":"Indie fejlesztő. Flutter/Dart. Saját UI, gyors iteráció, tiszta vizuál. Gyakran frissítek, stabilan szállítok.",
-        "contact.title":"Kapcsolat",
-        "contact.body":"Elérsz itt: <a href=\"mailto:hello@yourmail.tld\">hello@yourmail.tld</a> • YouTube • TikTok • GitHub"
-      }
-    };
-
-    const $ = (s, c=document)=>Array.from(c.querySelectorAll(s));
-    function applyLang(lang){
-      $('[data-i18n]').forEach(el=>{
-        const key=el.getAttribute('data-i18n');
-        const str=(dict[lang]&&dict[lang][key])||dict.en[key]||el.innerHTML;
-        el.innerHTML=str;
-      });
-      document.documentElement.lang=lang;
-      localStorage.setItem('lang',lang);
-    }
-    const select=document.getElementById('lang');
-    const initial=localStorage.getItem('lang')||(navigator.language.startsWith('hu')?'hu':'en');
-    select.value=initial; applyLang(initial);
-    select.addEventListener('change',e=>applyLang(e.target.value));
-
-    // Filter chips
-    const chips=$('.chip'); const grid=$('#projectsGrid')[0];
-    chips.forEach(ch=>ch.addEventListener('click',()=>{
-      chips.forEach(c=>c.classList.remove('active')); ch.classList.add('active');
-      const f=ch.dataset.filter;
-      $('[data-status]',grid).forEach(card=>{
-        const show = f==='all' || card.dataset.status===f;
-        card.style.display=show?'block':'none';
-      });
-    }));
   </script>
 </body>
 </html>
