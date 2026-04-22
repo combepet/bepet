@@ -3,286 +3,829 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bepet – Games & Apps</title>
-  <meta name="description" content="Indie games & apps by Bepet. Tasty Tactics, Pet Game, SlidePals, and Timnetic." />
-  <link rel="canonical" href="https://your-domain.tld/" />
-  <link rel="icon" href="/favicon.ico" />
+  <title>BePet Games</title>
+  <meta name="description" content="BePet Games is an indie game studio focused on polished mobile games. Play Tasty Tactics now and follow the upcoming SlidePals release." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b0f1a; --text:#e5e7eb; --muted:#94a3b8;
-      --primary:#7c3aed; --accent:#22d3ee;
-      --border:#22314f;
-      --success:#16a34a;
+      --bg:#0a0f1c;
+      --bg-soft:#10182b;
+      --panel:rgba(16,24,43,.72);
+      --panel-strong:rgba(15,22,38,.92);
+      --text:#eef2ff;
+      --muted:#a8b3cf;
+      --line:rgba(160,180,255,.14);
+      --accent:#67e8f9;
+      --accent-2:#8b5cf6;
+      --accent-3:#f59e0b;
+      --success:#22c55e;
+      --shadow:0 20px 50px rgba(0,0,0,.35);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1180px;
     }
+
     *{box-sizing:border-box}
-    html,body{
-      margin:0;padding:0;
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif;
+      color:var(--text);
       background:
-        radial-gradient(1200px 800px at 10% -10%, #111827, transparent),
-        radial-gradient(1000px 600px at 120% 20%, #0b1220, transparent),
-        var(--bg);
-      color:var(--text); font-family:Poppins,system-ui,Segoe UI,Roboto,sans-serif
+        radial-gradient(1000px 700px at -10% -10%, rgba(103,232,249,.12), transparent 60%),
+        radial-gradient(900px 700px at 110% 0%, rgba(139,92,246,.16), transparent 60%),
+        radial-gradient(700px 500px at 50% 120%, rgba(245,158,11,.08), transparent 60%),
+        linear-gradient(180deg, #0a0f1c 0%, #0c1221 100%);
     }
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
-    /* header */
-    header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);
-      background:linear-gradient(180deg,#0b0f1ae6,#0b0f1a80 60%,transparent);
-      border-bottom:1px solid #0b1220}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-    .brand{font-weight:800;letter-spacing:.5px;display:flex;align-items:center;gap:10px}
-    .dot{width:10px;height:10px;border-radius:50%;
-      background:linear-gradient(45deg,var(--primary),var(--accent));box-shadow:0 0 12px var(--accent)}
-    .menu{display:flex;align-items:center;gap:14px}
-    .menu a{padding:6px 12px;border-radius:10px;color:var(--muted)}
-    .menu a:hover{color:var(--text);background:#172036}
-    .icons a img{height:28px;width:auto;filter:brightness(0) invert(1);opacity:.85;transition:.2s}
-    .icons a img:hover{opacity:1;transform:scale(1.05)}
-    .lang{appearance:none;background:#10182a;border:1px solid var(--border);color:var(--text);
-      padding:6px 10px;border-radius:10px}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
 
-    /* hero */
-    .hero-inner{padding:64px 0 40px;text-align:left}
-    .title{font-size:clamp(28px,6vw,58px);line-height:1.05;margin:0 0 14px;font-weight:800}
-    .title .grad{background:linear-gradient(90deg,var(--accent),var(--primary));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .subtitle{color:var(--muted);font-size:clamp(14px,2.5vw,18px)}
-    .cta{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{padding:12px 18px;border-radius:14px;border:1px solid #1f2a44;background:#10182a;transition:.2s;font-weight:600}
-    .btn.primary{background:linear-gradient(90deg,var(--primary),var(--accent));color:#0a0f1a;border:none;box-shadow:0 0 20px #22d3ee40}
-    .btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px #00000040}
-
-    /* sections */
-    .section{padding:42px 0}
-    .section h2{font-size:28px;margin:0 0 18px;font-weight:800}
-    .muted{color:var(--muted)}
-
-    /* grid & cards */
-    .grid{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
-    @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:640px){.grid{grid-template-columns:1fr}}
-
-    .card{
-      position:relative;background:linear-gradient(180deg,#111a2caa,#0b1220a0);
-      border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.25s;
-      box-shadow:0 10px 30px #00000040;
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(14px);
+      background:rgba(10,15,28,.7);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px #00000070;border-color:#2b3d64}
-    .thumb{aspect-ratio:16/9;background:#0f1626;position:relative;overflow:hidden}
-    .thumb img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:opacity .3s ease}
 
-    /* ribbons & overlays */
-    .ribbon{position:absolute;top:10px;left:10px;padding:6px 10px;border-radius:10px;font-size:12px;font-weight:700}
-    .ribbon.play{background:#052e25;color:#d1fae5;border:1px solid #164e3b}
-    .ribbon.dev{background:#23160a;color:#ffedd5;border:1px solid #5b3a12}
+    .nav{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
 
-    .overlay{
-      position:absolute;inset:0;background:rgba(0,0,0,.55);
-      color:#e2e8f0;display:flex;align-items:center;justify-content:center;
-      font-weight:700;font-size:14px;letter-spacing:.4px;opacity:0;transition:.3s;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+
+    .brand-badge{
+      width:38px;
+      height:38px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--accent-2),var(--accent));
+      box-shadow:0 10px 30px rgba(103,232,249,.22);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .brand-badge::after{
+      content:"";
+      position:absolute;
+      inset:7px;
+      border-radius:10px;
+      background:rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.18);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a, .lang{
+      color:var(--muted);
+      padding:10px 14px;
+      border-radius:999px;
+      transition:.2s ease;
+      font-size:14px;
+      border:1px solid transparent;
+    }
+
+    .nav-links a:hover, .lang:hover{
+      color:var(--text);
+      background:rgba(255,255,255,.04);
+      border-color:rgba(255,255,255,.06);
+    }
+
+    .lang{
+      appearance:none;
+      background:rgba(255,255,255,.03);
+      cursor:pointer;
+    }
+
+    .hero{
+      padding:70px 0 34px;
+    }
+
+    .hero-wrap{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .section-card,
+    .game-card,
+    .contact-card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+    }
+
+    .hero-copy{
+      border-radius:32px;
+      padding:34px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-copy::before{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      top:-90px;
+      right:-60px;
+      background:radial-gradient(circle, rgba(103,232,249,.22), transparent 70%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:18px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      color:#d8e2ff;
+      font-size:13px;
+      font-weight:600;
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .eyebrow-dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 0 12px rgba(103,232,249,.6);
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(36px, 6vw, 68px);
+      line-height:1.02;
+      letter-spacing:-.04em;
+    }
+
+    .gradient-text{
+      background:linear-gradient(90deg,var(--accent),#c4b5fd 58%, #fcd34d);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero-sub{
+      margin:18px 0 0;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.65;
+      max-width:700px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:50px;
+      padding:0 18px;
+      border-radius:16px;
+      font-weight:700;
+      transition:.2s ease;
+      border:1px solid rgba(255,255,255,.09);
+      color:var(--text);
+      background:rgba(255,255,255,.04);
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .btn-primary{
+      border:none;
+      color:#07111f;
+      background:linear-gradient(90deg,var(--accent),#c4b5fd);
+      box-shadow:0 14px 34px rgba(103,232,249,.22);
+    }
+
+    .hero-card{
+      border-radius:32px;
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .mini-stat-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .mini-stat{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .mini-stat .label{
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+      margin-bottom:8px;
       text-transform:uppercase;
+      letter-spacing:.08em;
     }
-    .dev .thumb img{opacity:.6;}
-    .dev .overlay{opacity:1;}
-    .dev:hover .thumb img{opacity:.8;}
 
-    .card-body{padding:14px 14px 16px}
-    .card-title{display:flex;align-items:center;gap:8px;font-weight:700;margin:0 0 6px;font-size:18px}
-    .desc{color:var(--muted);font-size:14px;line-height:1.5;min-height:3.1em}
-    .platforms{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
-    .pill{display:flex;align-items:center;gap:6px;font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid #22314f;background:#0d1526}
+    .mini-stat strong{
+      font-size:20px;
+      display:block;
+    }
 
-    .eta{margin-top:10px;display:inline-flex;gap:6px;align-items:center;
-      font-size:12px;padding:6px 10px;border-radius:999px;border:1px dashed #5b3a12;background:#1a1320;color:#ffedd5}
+    .hero-note{
+      padding:18px;
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.06);
+      color:#dbe5ff;
+      line-height:1.6;
+    }
 
-    footer{border-top:1px solid #121a2c;margin-top:34px;padding:20px 0;color:#93a3bd;font-size:13px;text-align:center}
+    section{
+      padding:26px 0;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:16px;
+      margin-bottom:20px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:30px;
+      letter-spacing:-.03em;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      max-width:680px;
+      line-height:1.6;
+    }
+
+    .games-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
+    }
+
+    .game-card{
+      border-radius:28px;
+      overflow:hidden;
+    }
+
+    .game-cover{
+      position:relative;
+      aspect-ratio:16/9;
+      background:#0f172a;
+      overflow:hidden;
+    }
+
+    .game-cover img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .game-shade{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.45) 100%);
+      pointer-events:none;
+    }
+
+    .status-badge{
+      position:absolute;
+      top:16px;
+      left:16px;
+      z-index:2;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.04em;
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(8px);
+    }
+
+    .status-live{
+      background:rgba(34,197,94,.16);
+      color:#dcfce7;
+    }
+
+    .status-soon{
+      background:rgba(245,158,11,.16);
+      color:#fef3c7;
+    }
+
+    .game-body{
+      padding:22px;
+    }
+
+    .game-title-row{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      margin-bottom:10px;
+    }
+
+    .game-title{
+      margin:0;
+      font-size:25px;
+      letter-spacing:-.03em;
+    }
+
+    .game-phase{
+      font-size:12px;
+      font-weight:700;
+      color:#d8e2ff;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.07);
+      white-space:nowrap;
+    }
+
+    .game-desc{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .meta-row,
+    .link-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .chip{
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:600;
+      color:#dbe5ff;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.07);
+    }
+
+    .release-note{
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px dashed rgba(255,255,255,.12);
+      color:#e5ecff;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .section-card{
+      border-radius:28px;
+      padding:26px;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .about-list{
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .about-item{
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      color:#dce5ff;
+      line-height:1.6;
+    }
+
+    .contact-card{
+      border-radius:28px;
+      padding:24px;
+    }
+
+    .contact-links{
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .contact-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      transition:.2s ease;
+    }
+
+    .contact-link:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+    }
+
+    .contact-label{
+      color:var(--muted);
+      font-size:13px;
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .contact-value{
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .footer{
+      padding:34px 0 48px;
+      color:var(--muted);
+      text-align:center;
+      font-size:14px;
+    }
+
+    @media (max-width: 980px){
+      .hero-wrap,
+      .games-grid,
+      .two-col{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 720px){
+      .nav{
+        min-height:auto;
+        padding:14px 0;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .nav-links{
+        width:100%;
+        justify-content:space-between;
+      }
+
+      .hero{
+        padding-top:36px;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .section-card,
+      .game-body,
+      .contact-card{
+        padding:20px;
+      }
+
+      .mini-stat-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section-head{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .game-title-row{
+        flex-direction:column;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <div class="container nav">
-      <div class="brand"><span class="dot"></span> BEPET</div>
-      <nav class="menu">
-        <a href="#projects" data-i18n="nav.projects">Projects</a>
+      <a href="#top" class="brand" aria-label="BePet Games home">
+        <span class="brand-badge" aria-hidden="true"></span>
+        <span>BePet Games</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#games" data-i18n="nav.games">Games</a>
         <a href="#about" data-i18n="nav.about">About</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
-      </nav>
-      <div class="icons">
-        <a href="https://play.google.com/store/apps/details?id=com.tastytactics" target="_blank" rel="noopener" title="Google Play">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
-        </a>
-        <a href="#" target="_blank" rel="noopener" title="App Store">
-          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
-        </a>
-        <a href="https://github.com/combepet" target="_blank" rel="noopener" title="GitHub">
-          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
-        </a>
-        <select id="lang" class="lang" aria-label="Language">
+        <select id="lang" class="lang" aria-label="Language selector">
           <option value="en">EN</option>
           <option value="hu">HU</option>
         </select>
-      </div>
+      </nav>
     </div>
   </header>
 
-  <main class="hero">
-    <div class="container hero-inner">
-      <h1 class="title" data-i18n="hero.title">Indie games & apps, <span class="grad">gaming-grade</span> quality</h1>
-      <p class="subtitle" data-i18n="hero.subtitle">Mobile focus. Strong visuals + stable tech. Follow my released and in-dev projects here.</p>
-      <div class="cta">
-        <a class="btn primary" href="#projects" data-i18n="hero.cta">See projects</a>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            <span data-i18n="hero.eyebrow">Indie mobile game studio</span>
+          </div>
+
+          <h1 data-i18n="hero.title">Small studio, <span class="gradient-text">polished games</span>.</h1>
+          <p class="hero-sub" data-i18n="hero.subtitle">BePet Games creates accessible mobile games with strong visual identity, steady updates, and room to grow. Right now, the focus is on Tasty Tactics and the upcoming SlidePals release.</p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#games" data-i18n="hero.ctaPrimary">Explore games</a>
+            <a class="btn" href="https://play.google.com/store/apps/details?id=com.tastytactics" target="_blank" rel="noopener" data-i18n="hero.ctaSecondary">Play Tasty Tactics</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Studio highlights">
+          <div class="mini-stat-grid">
+            <div class="mini-stat">
+              <span class="label" data-i18n="stats.releasedLabel">Released</span>
+              <strong data-i18n="stats.releasedValue">1 live game</strong>
+            </div>
+            <div class="mini-stat">
+              <span class="label" data-i18n="stats.nextLabel">Next up</span>
+              <strong data-i18n="stats.nextValue">SlidePals</strong>
+            </div>
+            <div class="mini-stat">
+              <span class="label" data-i18n="stats.platformLabel">Platform</span>
+              <strong data-i18n="stats.platformValue">Android</strong>
+            </div>
+            <div class="mini-stat">
+              <span class="label" data-i18n="stats.focusLabel">Focus</span>
+              <strong data-i18n="stats.focusValue">Mobile-first</strong>
+            </div>
+          </div>
+
+          <div class="hero-note" data-i18n="hero.note">
+            The site now reflects the real roadmap: Tasty Tactics is available now, while SlidePals is the next planned release. More projects can be added later as they become real enough to show publicly.
+          </div>
+        </aside>
       </div>
-    </div>
+    </section>
+
+    <section id="games">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="games.title">Games</h2>
+          <p data-i18n="games.subtitle">A cleaner public roadmap: one released title, one upcoming project, and no filler.</p>
+        </div>
+
+        <div class="games-grid">
+          <article class="game-card">
+            <div class="game-cover">
+              <span class="status-badge status-live" data-i18n="status.live">LIVE NOW</span>
+              <img src="assets/tasty-tactics/cover.jpg" alt="Tasty Tactics cover" loading="lazy">
+              <div class="game-shade"></div>
+            </div>
+            <div class="game-body">
+              <div class="game-title-row">
+                <h3 class="game-title">Tasty Tactics</h3>
+                <div class="game-phase" data-i18n="tt.phase">Active development</div>
+              </div>
+              <p class="game-desc" data-i18n="tt.desc">A restaurant-themed merge game with ongoing updates, events, progression systems, and a growing amount of content. This is the current flagship release of BePet Games.</p>
+
+              <div class="meta-row">
+                <span class="chip">Android</span>
+                <span class="chip" data-i18n="tt.meta1">Live on Google Play</span>
+                <span class="chip" data-i18n="tt.meta2">Seasonal updates</span>
+              </div>
+
+              <div class="link-row">
+                <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.tastytactics" target="_blank" rel="noopener" data-i18n="tt.cta">View on Google Play</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <div class="game-cover">
+              <span class="status-badge status-soon" data-i18n="status.soon">COMING NEXT</span>
+              <img src="assets/slide/cover.jpg" alt="SlidePals cover" loading="lazy">
+              <div class="game-shade"></div>
+            </div>
+            <div class="game-body">
+              <div class="game-title-row">
+                <h3 class="game-title">SlidePals</h3>
+                <div class="game-phase" data-i18n="slide.phase">In development</div>
+              </div>
+              <p class="game-desc" data-i18n="slide.desc">A colorful mobile game project currently in development. The current target is late Q2 2026, but the release window may still shift depending on final polish and launch readiness.</p>
+
+              <div class="meta-row">
+                <span class="chip">Android</span>
+                <span class="chip" data-i18n="slide.meta1">Planned release</span>
+                <span class="chip" data-i18n="slide.meta2">Late Q2 2026</span>
+              </div>
+
+              <div class="release-note" data-i18n="slide.note">Planned timing is intentionally conservative here. It is better to show a believable window than promise too much too early.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container two-col">
+        <div class="section-card">
+          <div class="section-head">
+            <h2 data-i18n="about.title">About BePet Games</h2>
+          </div>
+          <p style="margin:0;color:var(--muted);line-height:1.75;" data-i18n="about.body">BePet Games is an indie game studio focused on building approachable mobile games with a clear visual style and long-term growth potential. The goal is not to launch everything at once, but to build a smaller lineup carefully and improve each project over time.</p>
+          <div class="about-list">
+            <div class="about-item" data-i18n="about.item1">Mobile-first development with Flutter and Dart.</div>
+            <div class="about-item" data-i18n="about.item2">Priority on polish, clarity, and consistent updates.</div>
+            <div class="about-item" data-i18n="about.item3">Public roadmap kept intentionally realistic.</div>
+          </div>
+        </div>
+
+        <div id="contact" class="contact-card">
+          <div class="section-head">
+            <h2 data-i18n="contact.title">Contact</h2>
+          </div>
+          <p style="margin:0;color:var(--muted);line-height:1.75;" data-i18n="contact.body">For studio updates, game links, or future collaboration, use the channels below. Replace any placeholder text with your real handles before publishing.</p>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:hello@bepetgames.com">
+              <div>
+                <span class="contact-label" data-i18n="contact.emailLabel">Email</span>
+                <span class="contact-value">hello@bepetgames.com</span>
+              </div>
+              <span>→</span>
+            </a>
+            <a class="contact-link" href="https://github.com/combepet" target="_blank" rel="noopener">
+              <div>
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value">github.com/combepet</span>
+              </div>
+              <span>→</span>
+            </a>
+            <a class="contact-link" href="#" aria-disabled="true">
+              <div>
+                <span class="contact-label" data-i18n="contact.socialLabel">Socials</span>
+                <span class="contact-value" data-i18n="contact.socialValue">Add Facebook / YouTube / TikTok links here</span>
+              </div>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <section id="projects" class="section">
-    <div class="container">
-      <h2 data-i18n="released.title">Released Game</h2>
-      <div class="grid">
-        <a class="card" href="https://play.google.com/store/apps/details?id=com.tastytactics" target="_blank" rel="noopener">
-          <div class="ribbon play" data-i18n="status.ready">Ready</div>
-          <div class="thumb"><img loading="lazy" src="assets/tasty-tactics/cover.jpg" alt="Tasty Tactics cover"></div>
-          <div class="card-body">
-            <div class="card-title">Tasty Tactics</div>
-            <div class="desc" data-i18n="tt.desc">Merge-restaurant idle. Weekly updates, 30+ languages, missions, spawners, and rewards.</div>
-            <div class="platforms"><span class="pill">Android</span><span class="pill">iOS</span></div>
-          </div>
-        </a>
-      </div>
-
-      <h2 style="margin-top:40px;" data-i18n="dev.title">In Development</h2>
-      <div class="grid">
-
-        <!-- Pet Game -->
-        <div class="card dev" data-status="dev">
-          <div class="ribbon dev" data-i18n="status.dev">In dev</div>
-          <div class="thumb">
-            <img loading="lazy" src="assets/pet-game/cover.jpg" alt="Pet Game cover">
-            <div class="overlay" data-i18n="overlay.dev">Under development</div>
-          </div>
-          <div class="card-body">
-            <div class="card-title">Pet Game</div>
-            <div class="desc" data-i18n="pet.desc">Cute idle-clicker world with pets, minigames, and animated sprites.</div>
-            <div class="platforms"><span class="pill">Android</span><span class="pill">iOS</span></div>
-            <div class="eta"><span data-i18n="eta.label">ETA</span>: <strong>2025 Q4</strong> <span class="muted" data-i18n="eta.note">(subject to change)</span></div>
-          </div>
-        </div>
-
-        <!-- SlidePals -->
-        <div class="card dev" data-status="dev">
-          <div class="ribbon dev" data-i18n="status.dev">In dev</div>
-          <div class="thumb">
-            <img loading="lazy" src="assets/slide/cover.jpg" alt="SlidePals cover">
-            <div class="overlay" data-i18n="overlay.dev">Under development</div>
-          </div>
-          <div class="card-body">
-            <div class="card-title">SlidePals</div>
-            <div class="desc" data-i18n="slide.desc">Casual math-runner with animals, gates, and colorful upgrades.</div>
-            <div class="platforms"><span class="pill">Android</span><span class="pill">iOS</span></div>
-            <div class="eta"><span data-i18n="eta.label">ETA</span>: <strong>2025 Q4</strong> <span class="muted" data-i18n="eta.note">(subject to change)</span></div>
-          </div>
-        </div>
-
-        <!-- Timnetic -->
-        <div class="card dev" data-status="dev">
-          <div class="ribbon dev" data-i18n="status.dev">In dev</div>
-          <div class="thumb">
-            <img loading="lazy" src="assets/time/cover.jpg" alt="Timnetic cover">
-            <div class="overlay" data-i18n="overlay.dev">Under development</div>
-          </div>
-          <div class="card-body">
-            <div class="card-title">Timnetic</div>
-            <div class="desc" data-i18n="time.desc">A future-earth where time, sound and magnetism resonate. Worldbuilding in progress.</div>
-            <div class="platforms"><span class="pill">Android</span><span class="pill">iOS</span><span class="pill">PC</span></div>
-            <div class="eta"><span data-i18n="eta.label">ETA</span>: <strong>2026 Q1</strong> <span class="muted" data-i18n="eta.note">(subject to change)</span></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="section">
-    <div class="container">
-      <h2 data-i18n="about.title">About</h2>
-      <p class="muted" data-i18n="about.body">
-        Indie dev creating cross-platform games with Flutter/Dart.
-        Focus on design, performance, and frequent updates.
-        Vision: small polished games that grow into worlds.
-      </p>
-    </div>
-  </section>
-
-  <section id="contact" class="section">
-    <div class="container">
-      <h2 data-i18n="contact.title">Contact</h2>
-      <p class="muted" data-i18n="contact.body">hello@yourmail.tld • YouTube • TikTok • GitHub</p>
-    </div>
-  </section>
-
-  <footer>© <span id="y"></span> Bepet — All rights reserved.</footer>
+  <footer class="footer">© <span id="year"></span> BePet Games. <span data-i18n="footer.text">Built with a smaller roadmap and a more honest public face.</span></footer>
 
   <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Tiny i18n
     const dict = {
-      en:{
-        "nav.projects":"Projects","nav.about":"About","nav.contact":"Contact",
-        "hero.title":"Indie games & apps, <span class=\"grad\">gaming-grade</span> quality",
-        "hero.subtitle":"Mobile focus. Strong visuals + stable tech. Follow my released and in-dev projects here.",
-        "hero.cta":"See projects",
-        "released.title":"Released Game",
-        "status.ready":"Ready","status.dev":"In dev",
-        "overlay.dev":"Under development",
-        "dev.title":"In Development",
-        "tt.desc":"Merge-restaurant idle. Weekly updates, 30+ languages, missions, spawners, and rewards.",
-        "pet.desc":"Cute idle-clicker world with pets, minigames, and animated sprites.",
-        "slide.desc":"Casual math-runner with animals, gates, and colorful upgrades.",
-        "time.desc":"A future-earth where time, sound and magnetism resonate. Worldbuilding in progress.",
-        "eta.label":"ETA","eta.note":"(subject to change)",
-        "about.title":"About",
-        "about.body":"Indie dev creating cross-platform games with Flutter/Dart.\nFocus on design, performance, and frequent updates.\nVision: small polished games that grow into worlds.",
-        "contact.title":"Contact","contact.body":"hello@yourmail.tld • YouTube • TikTok • GitHub"
+      en: {
+        "nav.games": "Games",
+        "nav.about": "About",
+        "nav.contact": "Contact",
+        "hero.eyebrow": "Indie mobile game studio",
+        "hero.title": "Small studio, <span class='gradient-text'>polished games</span>.",
+        "hero.subtitle": "BePet Games creates accessible mobile games with strong visual identity, steady updates, and room to grow. Right now, the focus is on Tasty Tactics and the upcoming SlidePals release.",
+        "hero.ctaPrimary": "Explore games",
+        "hero.ctaSecondary": "Play Tasty Tactics",
+        "hero.note": "The site now reflects the real roadmap: Tasty Tactics is available now, while SlidePals is the next planned release. More projects can be added later as they become real enough to show publicly.",
+        "stats.releasedLabel": "Released",
+        "stats.releasedValue": "1 live game",
+        "stats.nextLabel": "Next up",
+        "stats.nextValue": "SlidePals",
+        "stats.platformLabel": "Platform",
+        "stats.platformValue": "Android",
+        "stats.focusLabel": "Focus",
+        "stats.focusValue": "Mobile-first",
+        "games.title": "Games",
+        "games.subtitle": "A cleaner public roadmap: one released title, one upcoming project, and no filler.",
+        "status.live": "LIVE NOW",
+        "status.soon": "COMING NEXT",
+        "tt.phase": "Active development",
+        "tt.desc": "A restaurant-themed merge game with ongoing updates, events, progression systems, and a growing amount of content. This is the current flagship release of BePet Games.",
+        "tt.meta1": "Live on Google Play",
+        "tt.meta2": "Seasonal updates",
+        "tt.cta": "View on Google Play",
+        "slide.phase": "In development",
+        "slide.desc": "A colorful mobile game project currently in development. The current target is late Q2 2026, but the release window may still shift depending on final polish and launch readiness.",
+        "slide.meta1": "Planned release",
+        "slide.meta2": "Late Q2 2026",
+        "slide.note": "Planned timing is intentionally conservative here. It is better to show a believable window than promise too much too early.",
+        "about.title": "About BePet Games",
+        "about.body": "BePet Games is an indie game studio focused on building approachable mobile games with a clear visual style and long-term growth potential. The goal is not to launch everything at once, but to build a smaller lineup carefully and improve each project over time.",
+        "about.item1": "Mobile-first development with Flutter and Dart.",
+        "about.item2": "Priority on polish, clarity, and consistent updates.",
+        "about.item3": "Public roadmap kept intentionally realistic.",
+        "contact.title": "Contact",
+        "contact.body": "For studio updates, game links, or future collaboration, use the channels below. Replace any placeholder text with your real handles before publishing.",
+        "contact.emailLabel": "Email",
+        "contact.socialLabel": "Socials",
+        "contact.socialValue": "Add Facebook / YouTube / TikTok links here",
+        "footer.text": "Built with a smaller roadmap and a more honest public face."
       },
-      hu:{
-        "nav.projects":"Projektek","nav.about":"Rólam","nav.contact":"Kapcsolat",
-        "hero.title":"Indie játékok & appok, <span class=\"grad\">játékszintű</span> minőségben",
-        "hero.subtitle":"Mobil fókusz. Erős vizuál + stabil technika. Itt követheted a kész és fejlesztés alatt lévő projekteket.",
-        "hero.cta":"Projektek megnyitása",
-        "released.title":"Megjelent játék",
-        "status.ready":"Letölthető","status.dev":"Fejlesztés alatt",
-        "overlay.dev":"Fejlesztés alatt",
-        "dev.title":"Fejlesztés alatt",
-        "tt.desc":"Merge-étterem idle. Heti frissítések, 30+ nyelv, küldetések, spawner-rendszer, jutalmak.",
-        "pet.desc":"Cuki idle-clicker világ kedvencekkel, minijátékokkal és sprite animációkkal.",
-        "slide.desc":"Laza matek-runner állatokkal, kapukkal, színes fejlesztésekkel.",
-        "time.desc":"Jövő-Föld, ahol idő, hang és mágnesesség rezonál. Világépítés folyamatban.",
-        "eta.label":"Várható","eta.note":"(változhat)",
-        "about.title":"Rólam",
-        "about.body":"Indie fejlesztő, Flutter/Dart alapokon.\nFókusz: design, teljesítmény, rendszeres frissítések.\nCél: kis, csiszolt játékokból növő világok.",
-        "contact.title":"Kapcsolat","contact.body":"hello@yourmail.tld • YouTube • TikTok • GitHub"
+      hu: {
+        "nav.games": "Játékok",
+        "nav.about": "Rólunk",
+        "nav.contact": "Kapcsolat",
+        "hero.eyebrow": "Indie mobiljáték stúdió",
+        "hero.title": "Kis stúdió, <span class='gradient-text'>igényes játékok</span>.",
+        "hero.subtitle": "A BePet Games könnyen megközelíthető, erős vizuális stílusú mobiljátékokat készít, folyamatos fejlesztéssel és hosszabb távú építkezéssel. Jelenleg a fókusz a Tasty Tacticson és a készülő SlidePals megjelenésén van.",
+        "hero.ctaPrimary": "Játékok megtekintése",
+        "hero.ctaSecondary": "Tasty Tactics megnyitása",
+        "hero.note": "Az oldal most már a valós roadmapet mutatja: a Tasty Tactics elérhető, a SlidePals pedig a következő tervezett megjelenés. További projektek később bővíthetők, amikor már tényleg érdemes őket nyilvánosan mutatni.",
+        "stats.releasedLabel": "Megjelent",
+        "stats.releasedValue": "1 élő játék",
+        "stats.nextLabel": "Következő",
+        "stats.nextValue": "SlidePals",
+        "stats.platformLabel": "Platform",
+        "stats.platformValue": "Android",
+        "stats.focusLabel": "Fókusz",
+        "stats.focusValue": "Mobil-first",
+        "games.title": "Játékok",
+        "games.subtitle": "Egy tisztább nyilvános roadmap: egy megjelent játék, egy következő projekt, sallang nélkül.",
+        "status.live": "MÁR ELÉRHETŐ",
+        "status.soon": "KÖVETKEZŐEN ÉRKEZIK",
+        "tt.phase": "Aktív fejlesztés",
+        "tt.desc": "Egy éttermes merge játék folyamatos frissítésekkel, eseményekkel, fejlődési rendszerekkel és egyre bővülő tartalommal. Jelenleg ez a BePet Games fő megjelent címe.",
+        "tt.meta1": "Google Playen elérhető",
+        "tt.meta2": "Szezonális frissítések",
+        "tt.cta": "Megnézem a Google Playen",
+        "slide.phase": "Fejlesztés alatt",
+        "slide.desc": "Egy színes mobiljáték-projekt, amely jelenleg fejlesztés alatt áll. A mostani cél késő Q2 2026, de a megjelenési időszak még változhat a végső csiszolás és az indulási állapot függvényében.",
+        "slide.meta1": "Tervezett megjelenés",
+        "slide.meta2": "2026 Q2 vége",
+        "slide.note": "A tervezett időpont itt szándékosan óvatos. Sokkal jobb reális ablakot mutatni, mint túl korán túl sokat ígérni.",
+        "about.title": "A BePet Gamesről",
+        "about.body": "A BePet Games egy indie stúdió, amely letisztult vizuális stílusú, könnyen szerethető mobiljátékokat épít hosszabb távú növekedési lehetőséggel. A cél nem az, hogy egyszerre minden elkészüljön, hanem hogy kisebb portfólió épüljön tudatosan, és minden projekt idővel egyre jobb legyen.",
+        "about.item1": "Mobil-first fejlesztés Flutterrel és Darttal.",
+        "about.item2": "Fókusz a csiszoltságon, érthetőségen és rendszeres frissítéseken.",
+        "about.item3": "Szándékosan reális nyilvános roadmap.",
+        "contact.title": "Kapcsolat",
+        "contact.body": "Stúdiófrissítésekhez, játéklinkekhez vagy későbbi együttműködéshez az alábbi csatornákat használd. A publikálás előtt cseréld le a helykitöltő adatokat a saját elérhetőségeidre.",
+        "contact.emailLabel": "E-mail",
+        "contact.socialLabel": "Közösségi felületek",
+        "contact.socialValue": "Ide jöhetnek a Facebook / YouTube / TikTok linkek",
+        "footer.text": "Kisebb roadmappel és őszintébb nyilvános képpel felépítve."
       }
     };
-    const $ = (s, c=document)=>Array.from(c.querySelectorAll(s));
+
     function applyLang(lang){
-      $('[data-i18n]').forEach(el=>{
-        const key=el.getAttribute('data-i18n');
-        const str=(dict[lang]&&dict[lang][key])||dict.en[key]||el.innerHTML;
-        el.innerHTML=str;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const value = (dict[lang] && dict[lang][key]) || (dict.en && dict.en[key]);
+        if (value) el.innerHTML = value;
       });
-      document.documentElement.lang=lang;
-      localStorage.setItem('lang',lang);
+      localStorage.setItem('bepet-lang', lang);
     }
-    const select=document.getElementById('lang');
-    const initial=localStorage.getItem('lang')||(navigator.language.startsWith('hu')?'hu':'en');
-    select.value=initial; applyLang(initial);
-    select.addEventListener('change',e=>applyLang(e.target.value));
+
+    const langSelect = document.getElementById('lang');
+    const initialLang = localStorage.getItem('bepet-lang') || (navigator.language && navigator.language.startsWith('hu') ? 'hu' : 'en');
+    langSelect.value = initialLang;
+    applyLang(initialLang);
+    langSelect.addEventListener('change', e => applyLang(e.target.value));
   </script>
 </body>
 </html>
-
